@@ -20,5 +20,13 @@ TrampoLatté is an AMSI & ETW bypass poc which utilizes trampolines to hook spec
   AMSI_RESULT_CLEAN
 
 ```
+## Detection
 
-![image](https://github.com/user-attachments/assets/d77e27f9-ca9e-4767-9e63-5ec666ce46b8)
+- Started a custom ETW Consumer (right terminal) monitoring the .NET runtime
+
+![image](https://github.com/user-attachments/assets/45bbcc57-a264-450c-b166-41a21b89c4e0)
+
+- Executing assemblies through Havoc doesn't trigger any detection (ETW)
+
+![image](https://github.com/user-attachments/assets/80a6020e-aa22-48bc-ad99-dc9accbb1089)
+
