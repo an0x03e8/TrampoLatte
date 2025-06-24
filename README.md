@@ -30,3 +30,6 @@ TrampoLatté is an AMSI & ETW bypass poc which utilizes trampolines to hook spec
 
 ![image](https://github.com/user-attachments/assets/80a6020e-aa22-48bc-ad99-dc9accbb1089)
 
+# Disclaimer
+
+This is just a POC and is not OPSEC safe. 
