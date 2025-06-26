@@ -16,8 +16,7 @@
 int main() 
 {
 
-	PVOID	pOriginalAmsiFunc	= NULL,
-			pOriginalEtwFunc	= NULL,
+	PVOID	pOriginalEtwFunc	= NULL,
 			pEtwpEventWriteFull = NULL,
 			pAmsiScanBuff		= NULL;
 
@@ -25,7 +24,8 @@ int main()
 			dwOldProtectEtw		= 0;
 
 	// Loading amsi.dll
-	LoadLibrary((TEXT("AMSI")));
+	if (!LoadLibrary((TEXT("AMSI"))))
+		return -1;
 
 #ifdef DEBUG
 	printf("[DBG] Fetching EtwpEventWriteFull..\n");
